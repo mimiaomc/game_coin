@@ -19,6 +19,7 @@ DB_CONFIG = {
 NFC_PORT = os.getenv("NFC_PORT", "COM4")
 SCREEN_PORT = os.getenv("SCREEN_PORT", "COM5")
 SCREEN_BAUD = int(os.getenv("SCREEN_BAUD", "9600"))
+COIN_KEY = os.getenv("COIN_KEY", "9")
 
 # === 初始化 NFC ===
 try:
@@ -133,7 +134,7 @@ try:
                                         VALUES (%s, %s, %s, %s, %s, 'deduct')
                                     """, (uid_str, account_id, username, account['coins'], new_coins))
                                     conn.commit()
-                                    pydirectinput.press('9')
+                                    pydirectinput.press(COIN_KEY)
                                     print(f"✅ {username} 投币成功，余额：{new_coins}")
                                     show_welcome(username, new_coins)
 
